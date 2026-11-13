@@ -19,13 +19,15 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'faraday', '>= 1.7', '< 3'
+  spec.add_dependency 'faraday', '>= 1.10.6', '< 3'
   spec.add_dependency 'activesupport'
   spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'concurrent-ruby', '>= 1.3.7'
   spec.add_development_dependency 'rake'
-  spec.add_development_dependency 'oj'
+  spec.add_development_dependency 'oj', '>= 3.17.3'
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'rubocop-performance'
+  spec.add_development_dependency 'securerandom', '~> 0.3.0' # Ruby 2.7 compatibility
 end

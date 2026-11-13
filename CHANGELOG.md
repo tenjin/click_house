@@ -1,5 +1,11 @@
 # Unreleased
 
+## Changed
+* Refresh development locks to ActiveSupport 7.0.10 and Faraday 2.14.3 or newer,
+  retaining Faraday 1.10.6 compatibility for existing consumers and Ruby 2.7.
+* Faraday 2 development and CI now require Ruby 3.0 or newer.
+* Patch Oj, concurrent-ruby and REXML in all development bundles.
+
 # 2.2.0
 
 ## Changed
