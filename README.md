@@ -12,6 +12,26 @@ Releases are git tags; nothing is published to RubyGems. See
 gem 'click_house', git: 'https://github.com/tenjin/click_house.git', tag: 'vX.Y.Z'
 ```
 
+Development bundles retain the ActiveSupport 7.0 baseline at 7.0.10 and use
+Faraday 2.14.3 or newer (Ruby 3.0+), or Faraday 1.10.6 on the compatibility bundle
+(`BUNDLE_GEMFILE=Gemfile_faraday1`, including Ruby 2.7). Faraday 2.0 through 2.14.2
+have known security issues; consumers using Faraday 2 must update their own lock
+to at least 2.14.3. This library's lockfiles do not control consumer dependencies.
+
+ActiveSupport 7.0.10 still has known advisories: GHSA-2j26-frm8-cmj9,
+GHSA-89vf-4333-qx8v and GHSA-cg4j-q9v8-6v38 require at least 7.2.3.1;
+GHSA-8474-xrp6-wh69 requires at least 8.0.5.2 (Ruby 3.2+). Rails consumers must
+upgrade the Rails baseline together rather than overriding its exact
+ActiveSupport dependency. The gemspec keeps the existing ActiveSupport
+compatibility instead of forcing that migration.
+
+For adoption, merge this change before creating the next approved git-tagged
+release, then update each consumer's git tag and lockfile. An application still
+using the RubyGems `click_house` release must switch its source explicitly to use
+this fork; no RubyGems package is published here. Dependency-only fixes can also
+be applied directly to consumer lockfiles. Neither a driver tag update nor these
+development lock changes resolves advisories in a consumer's older Rails graph.
+
 A modern Ruby database driver for ClickHouse. [ClickHouse](https://clickhouse.yandex)
 is a high-performance column-oriented database management system developed by
 [Yandex](https://yandex.com/company) which operates Russia's most popular search engine.

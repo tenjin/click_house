@@ -35,15 +35,18 @@ jobs:
         run: make faraday1 bundle
 
       - name: Setup v2
+        if: matrix.ruby-version != '2.7'
         run: make faraday2 bundle
 
       - name: Run tests with faraday v.1 JSON
         run: make faraday1 rspec
       - name: Run tests with faraday v.2 JSON
+        if: matrix.ruby-version != '2.7'
         run: make faraday2 rspec
       - name: Run tests with faraday v.1 OJ
         run: make faraday1 oj rspec
       - name: Run tests with faraday v.2 OJ
+        if: matrix.ruby-version != '2.7'
         run: make faraday2 oj rspec
 
   rubocop:
